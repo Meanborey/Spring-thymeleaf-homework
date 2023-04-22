@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/master-layout}"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--th:action="@{/handleAddArticle}"-->
+<div layout:fragment="content">
+<div class="container mt-5">
+    <form  th:fragment="userspost(article)" th:action="@{handle-add-article}"  method="POST" enctype="multipart/form-data">
+        <div class="d-flex bg-light py-4 rounded justify-content-center ">
+            <div class="profile-section  d-flex flex-column align-items-center">
+                <img id="output-image" src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt="profile image ">
+                <input class="form-control" th:field="${article.title}" name="file" type="file" onchange="loadFile(event)">
+            </div>
+            <div class="input-section ms-3">
+                <h3> New Article </h3>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <label for="articleTitle"> Article Title </label>
+                        <input class="form-control" id="articleTitle" th:field="${article.title}" type="text">
+                        <div class="form-text text-danger " th:errors="${article.title}" > </div>
+                    </div>
+                    <div>
+                        <label for="authorSelect"> Choose Author</label>
+                        <select id="authorSelect" th:field="${article.authorID}" class="form-select">
+                            <option th:each="authors:${authors}"  th:value="${authors.id}" th:text="${authors.f_name}"> Choose Author </option>
+<!--                            <option >Muny Yat </option>-->
+<!--                            <option >Thyda Yat </option>-->
+<!--                            <option >num Yat </option>-->
+<!--                            <option >koko Yat </option>-->
+<!--                            <option >muy Yat </option>-->
+                        </select>
+                    </div>
+                </div>
+                <label for="articleDescription"> Article Description </label>
+                <textarea id="articleDescription"  class="form-control "></textarea>
+                <select class="form-select" multiple aria-label="multiple select example">
+                    <option th:each="categories:${categories}"  th:value="${categories.id}" th:text="${categories.category}" selected>Choose Select one or more option</option>
+                </select>
+                <div class="form-text text-danger " > </div>
+                <div class="d-flex justify-content-between mt-2">
+                    <button class="btn btn-warning" type="submit"> Post Article </button>
+                    <a th:href="@{all-articles}" class="btn btn-danger"> Cancel</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+</body>
+</html>
