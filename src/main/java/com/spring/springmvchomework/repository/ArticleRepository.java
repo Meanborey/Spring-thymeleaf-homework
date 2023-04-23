@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Repository
 public class ArticleRepository {
@@ -21,4 +22,15 @@ public class ArticleRepository {
     public List<Article> getArticleList(){
         return articleList;
     }
+    public List<Article> getArticleByid(int id){
+        return articleList.stream().filter(e->e.getId()==id).findFirst().orElse(null);
+    }
+    public List< Article> getArticleByAuthorName(String name){
+        return articleList.stream().filter(ex-> Objects.equals(ex.getAuthor().getF_name().name)).toList();
+
+    }
+    public void addArticle (Article article){
+        article.add(article);
+    }
+
 }

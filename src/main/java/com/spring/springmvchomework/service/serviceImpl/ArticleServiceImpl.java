@@ -1,6 +1,5 @@
 package com.spring.springmvchomework.service.serviceImpl;
 
-import com.spring.springmvchomework.controller.ArticleController;
 import com.spring.springmvchomework.model.Article;
 import com.spring.springmvchomework.repository.ArticleRepository;
 import com.spring.springmvchomework.service.ArticleService;
@@ -22,17 +21,24 @@ public class ArticleServiceImpl implements ArticleService {
     }
     @Override
     public List<Article> getAllArticle() {
+
         return articleRepository.getArticleList();
     }
 
     @Override
-    public List<Article> getArticleByAuthorName(String authorName) {
-        return null;
+    public List<Article> getArticleByAuthorName(String Name) {
+
+        return articleRepository.getArticleByAuthorName(Name);
+    }
+    @Override
+    public List<Article> getArticleByid(int id) {
+
+        return articleRepository.getArticleByid(id);
     }
 
     @Override
     public void addArticle(Article article) {
-
+articleRepository.addArticle(article);
     }
 
     @Override

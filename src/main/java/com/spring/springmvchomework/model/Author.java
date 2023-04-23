@@ -12,6 +12,7 @@ public class Author {
         private String f_name;
         private String username;
         private String p_userImage;
+        private String cover;
         private String sex;
         private String address;
         private String email;
