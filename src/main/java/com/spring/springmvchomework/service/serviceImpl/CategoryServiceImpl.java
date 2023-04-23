@@ -11,9 +11,9 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
     @Autowired
     CategoryRepository categoryRepository;
-//    CategoryServiceImpl(){
-//        categoryRepository=new CategoryRepository();
-//    }
+    CategoryServiceImpl(){
+        categoryRepository=new CategoryRepository();
+    }
 
 
     @Override

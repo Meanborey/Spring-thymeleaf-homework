@@ -1,24 +1,22 @@
 package com.spring.springmvchomework.service.serviceImpl;
 
 import com.spring.springmvchomework.model.Article;
-import com.spring.springmvchomework.repository.ArticleRepository;
+import com.spring.springmvchomework.repository.BlogRepository;
 import com.spring.springmvchomework.service.ArticleService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ArticleServiceImpl implements ArticleService {
 
 
 
     // inject Repository
 
-    ArticleRepository articleRepository;
-    ArticleServiceImpl (){
-
-        articleRepository = new ArticleRepository();
-    }
+    private final BlogRepository articleRepository;
     @Override
     public List<Article> getAllArticle() {
 

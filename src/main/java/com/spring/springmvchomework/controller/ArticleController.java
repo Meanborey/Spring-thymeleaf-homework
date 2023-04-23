@@ -45,7 +45,7 @@ public String alluser( Model model){
     model.addAttribute("categories",categoryService.getAllCategory());
         return "AllUser";
 }
-    @GetMapping("/ViewProfile")
+    @GetMapping("/author-view-profile/{IDview}/name")
     public String alluser(@PathVariable int IDview,@PathVariable String name, Model model){
 //        List<Article> articles= articleService.getAllArticle();
         model.addAttribute("article",articleService.getArticleByAuthorName(name));
@@ -63,7 +63,7 @@ public String alluser( Model model){
         model.addAttribute("article",new ArticleRequest());
         model.addAttribute("categories",categories);
         model.addAttribute("authors", authors);
-        return "new-article";
+        return "/AddPost";
         }
         Article newArticle = new Article();
         try{
@@ -84,8 +84,9 @@ public String alluser( Model model){
     }
     @GetMapping("/DisplayCategory")
     public String displaycategory(Model model){
-        List<Article> articles= articleService.getAllArticle();
-        model.addAttribute("article",articles);
-        return "DisplayCategory";
+        model.addAttribute("article",new ArticleRequest());
+        model.addAttribute("author",authorService.getAllAuthor());
+        model.addAttribute("categories",categoryService.getAllCategory());
+        return "AddPost";
     }
 }
