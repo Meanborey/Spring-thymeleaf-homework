@@ -2,12 +2,16 @@
 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 layout:decorate="~{layouts/master-layout}"
 xmlns:th="http://www.thymeleaf.org"
-> <div class=" col-lg-4 col-md-6 col-sm-12 card border-0" style="width: 18rem ; margin-bottom: 30px; padding-bottom: 10px;" th:fragment="authorCard" th:each="author:${authors}">
-    <img th:src="${author.p_userImage}" class="card-img-top" style="object-fit: cover; height: 250px"  alt="...">
-    <div class="card-body">
-        <h5 class="card-title" th:text="${author.name}"></h5>
-        <p class="card-text" th:text="${author.title}">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <!--        ***-->
-        <a th:href="@{author/{id}/{name}(id=${author.id}, name=${author.username})}" class="btn btn-primary" style="font-size: 13px">View profile</a>
+>
+    <div th:fragment="authorCard">
+        <div class=" col-lg-4 col-md-6 col-sm-12 card border-0" style="width: 18rem ; margin-bottom: 30px; padding-bottom: 10px;"  th:each="author:${authors}">
+            <img th:src="${author.p_userImage}" class="card-img-top" style="object-fit: cover; height: 250px"  alt="...">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${author.name}"></h5>
+                <p class="card-text" th:text="${author.title}">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <!--        ***-->
+                <a th:href="@{author/{id}/{name}(id=${author.id}, name=${author.username})}" class="btn btn-primary" style="font-size: 13px">View profile</a>
+            </div>
+        </div></div>
+
     </div>
-</div></div>

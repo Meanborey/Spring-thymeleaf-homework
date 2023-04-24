@@ -45,6 +45,8 @@ public String alluser( Model model){
     model.addAttribute("categories",categoryService.getAllCategory());
         return "AllUser";
 }
+
+//
     @GetMapping("/author-view-profile/{IDview}/name")
     public String alluser(@PathVariable int IDview,@PathVariable String name, Model model){
 //        List<Article> articles= articleService.getAllArticle();
@@ -87,6 +89,6 @@ public String alluser( Model model){
         model.addAttribute("article",new ArticleRequest());
         model.addAttribute("author",authorService.getAllAuthor());
         model.addAttribute("categories",categoryService.getAllCategory());
-        return "AddPost";
+        return "DisplayCategory";
     }
 }

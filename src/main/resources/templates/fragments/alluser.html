@@ -18,9 +18,9 @@
           <div class="card-body">
               <h1 th:text="${articles.name}" class="card-name"></h1>
               <h4 th:text="${#strings.concat('@').concat(articles.name)}" class="card-email text-warning"></h4><br><br><br>
-              <h5 th:text="${articles.article}" class="card-title">Card title</h5>
+              <h5 th:text="${articles.title}" class="card-title">Card title</h5>
               <p th:text="${articles.description}" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a th:href="@{author-view-profile/{IDview}/{UsersPost}(IDview=${Author.id},UsersPsot=${Author.name})}" class="btn btn-outline-primary p-2">View</a>
+              <a th:href="@{author-view-profile/{IDview}/{article}(IDview=${articles.id},article=${articles.name})}" class="btn btn-outline-primary p-2">View</a>
               <a href="#" class="btn btn-outline-success p-2">Update</a>
               <a href="#" class="btn btn-outline-danger p-2">Delete</a>
           </div>
