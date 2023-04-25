@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -34,6 +35,8 @@ public String index(Model model){
         List<Article>articles = articleService.getAllArticle();
         List<Category>categories=categoryService.getAllCategory();
         model.addAttribute("article", articles);
+        System.out.println("===================================");
+        articles.stream().forEach(System.out::println);
         model.addAttribute("category",categories);
         return "index";
 }
@@ -45,8 +48,6 @@ public String alluser( Model model){
     model.addAttribute("categories",categoryService.getAllCategory());
         return "AllUser";
 }
-
-//
     @GetMapping("/author-view-profile/{IDview}/name")
     public String alluser(@PathVariable int IDview,@PathVariable String name, Model model){
 //        List<Article> articles= articleService.getAllArticle();
@@ -55,21 +56,21 @@ public String alluser( Model model){
         model.addAttribute("categories",categoryService.getAllCategory());
         return "ViewProfile";
     }
+//    handle-add-article
     @PostMapping("/handle-add-article")
-    public String addpost(@ModelAttribute("article") ArticleRequest article, @RequestParam("file") MultipartFile file, BindingResult bindingResult, Model model) {
-
+    public String addpost(@ModelAttribute("article") ArticleRequest article, BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()){
             List<Category> categories = categoryService.getAllCategory();
         List<Author> authors = authorService.getAllAuthor();
         System.out.println(authors);
-        model.addAttribute("article",new ArticleRequest());
         model.addAttribute("categories",categories);
         model.addAttribute("authors", authors);
         return "/AddPost";
         }
         Article newArticle = new Article();
+        System.out.println("hERE IS THE VQLUE FO THE ARTICLE : "+article);
         try{
-            String filenames ="http://localhost:8080/images/"+ fileUploadService.uploadFile(file);
+            String filenames ="http://localhost:8080/images/"+ fileUploadService.uploadFile(article.getFile());
             newArticle.setImgUrl(filenames);
         }catch (Exception ex){
             newArticle.setImgUrl("https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png");
@@ -80,8 +81,21 @@ public String alluser( Model model){
         newArticle.setAuthor(authorService.getAllAuthor().stream().filter(e -> e.getId() == article.getAuthorID())
                 .findFirst().orElse(null));
         newArticle.setId(articleService.getAllArticle().stream().max(Comparator.comparingInt(Article::getId)).stream().toList().get(0).getId()+1);
+         newArticle.setName(newArticle.getAuthor().getUsername());// setting the name for hte post
 
+        // Create the categories for the article
+
+        newArticle.setCategory(categoryService.getAllCategory().stream().filter(e-> e.getId()==article.getCategoryID()).findFirst()
+                .orElse(null));
+        // category  vs name
+        //        List<Category> categories = new ArrayList<>();
+//        for (int cate : article.){
+//            categories.add(categoryService.getAllCategory().stream().filter(e->e.getId() == cate).findFirst().orElse(null));
+//        }
+//        Category categorieslist = categories;
+//        newArticle.setCategory(categorieslist);
         articleService.addArticle(newArticle);
+//        System.out.println("here is the new articl *****e : "+newArticle);
         return "redirect:/index";
     }
     @GetMapping("/DisplayCategory")
@@ -90,5 +104,13 @@ public String alluser( Model model){
         model.addAttribute("author",authorService.getAllAuthor());
         model.addAttribute("categories",categoryService.getAllCategory());
         return "DisplayCategory";
+    }
+    @GetMapping("/article-post")
+    public String publicpost(Model model){
+        model.addAttribute("article",new ArticleRequest());
+        model.addAttribute("author",authorService.getAllAuthor());
+        authorService.getAllAuthor().stream().forEach(System.out::println);
+        model.addAttribute("categories",categoryService.getAllCategory());
+        return "AddPost";
     }
 }

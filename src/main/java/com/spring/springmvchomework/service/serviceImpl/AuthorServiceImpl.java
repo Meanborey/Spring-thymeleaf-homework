@@ -10,8 +10,11 @@ import java.util.List;
 
 @Service
 public class AuthorServiceImpl implements AuthorService {
-    @Autowired
+//    @Autowired
     AuthorRepository authorRepository;
+    AuthorServiceImpl(){
+        authorRepository = new AuthorRepository();
+    }
     @Override
     public List<Author> getAllAuthor() {
         return authorRepository.getAuthors();

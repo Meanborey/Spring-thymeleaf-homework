@@ -25,11 +25,11 @@
                     <h4 th:text="${#strings.concat('@').concat(articles.name)}" class="card-email text-warning"></h4><br><br><br>
                     <h5 th:text="${articles.title}" class="card-title">Card title</h5>
                     <p th:text="${articles.description}" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-outline-primary p-2">View</a>
+                    <a th:href="@{/author-view-profile/{IDview}/{name}/(IDview = ${articles.id}, article=${articles.author.f_name})}" class="btn btn-outline-primary p-2">View</a>
                     <a href="#" class="btn btn-outline-success p-2">Update</a>
                     <a href="#" class="btn btn-outline-danger p-2">Delete</a>
                 </div>
             </div>
-
+<!--th:href="@{ViewProfile}" th:href="@{/author-view-profile/{IDview}/{name}/(IDview = ${articles.id}, article=${articles.author.name})}"-->
 </body>
 </html>

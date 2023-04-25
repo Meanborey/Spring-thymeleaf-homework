@@ -14,7 +14,7 @@
 </head>
 <body>
 <div th:replace="~{fragments/mynavbar::costomNavbar}" layout:fragment="content"></div>
-<div th:replace="~{fragments/addpost::userspost(article)}"></div>
+<div th:insert="~{fragments/addpost::userspost(article)}"></div>
 <script>
     function loadFile(event){
         let image =document.getElementById("output-image")

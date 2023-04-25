@@ -11,8 +11,10 @@ public class Article {
     private int id;
     private String name;
     private String imgUrl;
-    private String title;
+    private String title;//
     private String description;
     private Author author;
+
+    // List<Category> categories;
     private Category category;
 }
