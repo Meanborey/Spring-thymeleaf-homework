@@ -20,8 +20,7 @@ public class BlogRepository {
         return articleList;
     }
     public List<Article> getArticleByid(int id){
-//        return articleList.stream().filter(e->e.getId()==id).findFirst().orElse(null);
-        return null;
+        return articleList.stream().filter(e->e.getId() == id).toList();
     }
     public List< Article> getArticleByAuthorName(String name){
         //return articleList.stream().filter(ex-> Objects.equals(ex.getAuthor().getF_name().name)).toList();

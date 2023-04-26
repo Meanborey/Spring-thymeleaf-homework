@@ -23,11 +23,7 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.getArticleList();
     }
 
-    @Override
-    public List<Article> getArticleByAuthorName(String Name) {
 
-        return articleRepository.getArticleByAuthorName(Name);
-    }
     @Override
     public List<Article> getArticleByid(int id) {
 

@@ -12,6 +12,8 @@
 </head>
 <body>
 <div th:replace="~{fragments/mynavbar::costomNavbar}" layout:fragment="content"></div>
-<div th:replace="~{fragments/viewuser::CostomerViewUser}"></div>
+<div layout:fragment="content">
+    <div th:replace="~{fragments/viewuser::CostomerViewUser}"></div>
+</div>
 </body>
 </html>

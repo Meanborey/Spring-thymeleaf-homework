@@ -8,7 +8,6 @@ import java.util.List;
 public interface ArticleService {
 
     List<Article> getAllArticle();
-    List<Article> getArticleByAuthorName(String Name);
 
     List<Article> getArticleByid(int id);
 

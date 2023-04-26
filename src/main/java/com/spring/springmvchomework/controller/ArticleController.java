@@ -21,15 +21,25 @@ import java.util.List;
 
 @Controller
 public class ArticleController {
-    @Autowired
-ArticleService articleService;
-    @Autowired
+    ArticleService articleService;
     CategoryService categoryService;
-    @Autowired
     AuthorService authorService;
-    @Autowired
     FileUploadService fileUploadService;
     // inject article service
+    ArticleController(ArticleService articleService, CategoryService categoryService, AuthorService authorService, FileUploadService fileUploadService) {
+        this.articleService = articleService;
+        this.categoryService = categoryService;
+        this.authorService = authorService;
+        this.fileUploadService = fileUploadService;
+    }
+
+    //    @GetMapping("ViewProfile")
+//    public String test(Model model){
+//        model.addAttribute("article",new ArticleRequest());
+//        model.addAttribute("author",authorService.getAllAuthor());
+//        model.addAttribute("categories",categoryService.getAllCategory());
+//        return "ViewProfile";
+//    }
     @GetMapping("/index")
 public String index(Model model){
         List<Article>articles = articleService.getAllArticle();
@@ -48,12 +58,11 @@ public String alluser( Model model){
     model.addAttribute("categories",categoryService.getAllCategory());
         return "AllUser";
 }
-    @GetMapping("/author-view-profile/{IDview}/name")
-    public String alluser(@PathVariable int IDview,@PathVariable String name, Model model){
-//        List<Article> articles= articleService.getAllArticle();
-        model.addAttribute("article",articleService.getArticleByAuthorName(name));
-        model.addAttribute("viewProfile",articleService.getArticleByid(IDview));
-        model.addAttribute("categories",categoryService.getAllCategory());
+    @GetMapping("/author-view-profile/{ID}")
+    public String alluser(@PathVariable int ID, Model model){
+        model.addAttribute("article",articleService.getArticleByid(ID));
+        model.addAttribute("viewProfile",articleService.getArticleByid(ID));
+        model.addAttribute("authorr",articleService.getAllArticle());
         return "ViewProfile";
     }
 //    handle-add-article
