@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public class AuthorRepository {
-  private   List<Author> authors = new ArrayList<>(){{
+     List<Author> authors = new ArrayList<>(){{
         add(new Author(1001,"Muny Yat","Muny","https://i.pinimg.com/originals/cc/c4/06/ccc406dbafc09f3ac2f066a494af21e7.jpg","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwhV8QsSAGGsmpd0sEWh5npKurrBTBe1XA63AAw1M1GZ8rCB0m14pJ6j1V3muYgYKY5rA&usqp=CAU","female","Takeo","thydayat11@gamil.com"));
         add(new Author(1002,"Thyda Yat","Thyda","https://i.pinimg.com/736x/01/57/d3/0157d301917541f15677dc43f31f1fcb.jpg","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMZU5ChQ8hH2H2AxZJL-AMNjOj9NPbLm5poQ&usqp=CAU","female","pp","munyyat11@gamil.com"));
         add(new Author(1003,"num Yat","num","https://i.pinimg.com/564x/9f/aa/a1/9faaa1fedc94c355a4256ba6207c7714.jpg","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMZU5ChQ8hH2H2AxZJL-AMNjOj9NPbLm5poQ&usqp=CAU","female","kps","bmunat11@gamil.com"));
@@ -17,5 +17,9 @@ public class AuthorRepository {
     }};
     public List<Author> getAuthors(){
         return authors;
+    }
+
+    public Author getAuthorById(int id){
+        return authors.stream().filter(e->e.getId()==id).findFirst().orElse(null);
     }
 }

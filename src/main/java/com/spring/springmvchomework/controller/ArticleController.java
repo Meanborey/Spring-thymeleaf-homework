@@ -33,13 +33,15 @@ public class ArticleController {
         this.fileUploadService = fileUploadService;
     }
 
-    //    @GetMapping("ViewProfile")
-//    public String test(Model model){
-//        model.addAttribute("article",new ArticleRequest());
-//        model.addAttribute("author",authorService.getAllAuthor());
-//        model.addAttribute("categories",categoryService.getAllCategory());
-//        return "ViewProfile";
-//    }
+        @GetMapping("ViewProfile/{id}/{name}")
+    public String test(@PathVariable int id,@PathVariable String name, Model model){
+            model.addAttribute("article",articleService.getArticleByAuthorName(name));
+        model.addAttribute("author",authorService.getAuthorById(id));
+
+//            authorService.getAllAuthor().stream().forEach(System.out::println);
+        model.addAttribute("categories",categoryService.getAllCategory());
+        return "ViewProfile";
+    }
     @GetMapping("/index")
 public String index(Model model){
         List<Article>articles = articleService.getAllArticle();
@@ -58,13 +60,13 @@ public String alluser( Model model){
     model.addAttribute("categories",categoryService.getAllCategory());
         return "AllUser";
 }
-    @GetMapping("/author-view-profile/{ID}")
-    public String alluser(@PathVariable int ID, Model model){
-        model.addAttribute("article",articleService.getArticleByid(ID));
-        model.addAttribute("viewProfile",articleService.getArticleByid(ID));
-        model.addAttribute("authorr",articleService.getAllArticle());
-        return "ViewProfile";
-    }
+//    @GetMapping("/author-view-profile/")
+//    public String viewuser(@PathVariable int id, Model model){
+//        model.addAttribute("article",articleService.getAllArticle());
+//        model.addAttribute("author",articleService.getArticleByid(id));
+//        model.addAttribute("categories",categoryService.getAllCategory());
+//        return "ViewProfile";
+//    }
 //    handle-add-article
     @PostMapping("/handle-add-article")
     public String addpost(@ModelAttribute("article") ArticleRequest article, BindingResult bindingResult, Model model) {

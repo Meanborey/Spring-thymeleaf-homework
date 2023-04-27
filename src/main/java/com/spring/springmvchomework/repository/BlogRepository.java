@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Repository
 public class BlogRepository {
@@ -23,8 +24,8 @@ public class BlogRepository {
         return articleList.stream().filter(e->e.getId() == id).toList();
     }
     public List< Article> getArticleByAuthorName(String name){
-        //return articleList.stream().filter(ex-> Objects.equals(ex.getAuthor().getF_name().name)).toList();
-        return null;
+        return articleList.stream().filter(ex-> Objects.equals(ex.getAuthor().getF_name(), name)).toList();
+//        return null;
     }
     public void addArticle (Article article){
         articleList.add(article);

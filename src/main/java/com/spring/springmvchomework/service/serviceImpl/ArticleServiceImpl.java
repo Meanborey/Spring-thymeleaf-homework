@@ -31,6 +31,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public List<Article> getArticleByAuthorName(String name) {
+        return articleRepository.getArticleByAuthorName(name);
+    }
+
+    @Override
     public void addArticle(Article article) {
 articleRepository.addArticle(article);
     }

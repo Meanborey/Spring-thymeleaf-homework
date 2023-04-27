@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/master-layout}"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +8,7 @@
 </head>
 <body>
 <!--th:action="@{/handleAddArticle}"-->
-<div layout:fragment="content">
+
 <div class="container mt-5">
     <form  th:fragment="userspost(article)"  th:object="${article}" th:action="@{handle-add-article}"  method="POST" enctype="multipart/form-data">
         <div class="d-flex bg-light py-4 rounded justify-content-center ">
@@ -47,6 +45,6 @@
         </div>
     </form>
 </div>
-</div>
+
 </body>
 </html>

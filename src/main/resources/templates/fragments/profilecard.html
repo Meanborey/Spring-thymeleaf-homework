@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card" th:fragment="costomercard"  th:each="articles:${article}" >
+  <img th:src="${articles.imgUrl}" class="card-img-top" alt="...">
+  <img class="rounded-circle " th:src="${articles.author.p_userImage}"/>
+  <div class="card-body">
+    <h1 th:text="${articles.name}" class="card-name"></h1>
+    <h4 th:text="${#strings.concat('@').concat(articles.name)}" class="card-email text-warning"></h4><br><br><br>
+    <h5 th:text="${articles.title}" class="card-title">Card title</h5>
+    <p th:text="${articles.description}" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a th:href="@{ViewProfile/{id}(id = ${articles.id})}" class="btn btn-outline-primary p-2">View</a>
+    <a href="#" class="btn btn-outline-success p-2">Update</a>
+    <a href="#" class="btn btn-outline-danger p-2">Delete</a>
+  </div>
+</div>
+<div th:fragment="no-post">
+</div>
+
+</body>
+</html>

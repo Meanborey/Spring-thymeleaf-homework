@@ -16,24 +16,20 @@
   <link rel="stylesheet" th:href="@{webjars/bootstrap/css/bootstrap.min.css}">
   <!--    font awesome icon-->
   <script src="https://kit.fontawesome.com/5ce14b4205.js" crossorigin="anonymous"></script>
-</head></head>
+</head>
+
 <body>
 <header style="position: fixed; width: 100%; z-index: 10; background-color: white">
-  <div th:replace="~{fragments/navbar::navbar}">
+  <div th:replace="~{fragments/mynavbar::costomNavbar}">
   </div>
 </header>
-<main>
   <div layout:fragment="content">
 
   </div>
-</main>
-
 <footer>
-  <div th:replace="~{fragments/footer::footer}"></div>
+  <div th:replace="~{fragments/footer::costomericon}"></div>
 </footer>
 </body>
 </html>
-<body>
 
-</body>
-</html>
+
